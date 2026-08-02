@@ -177,6 +177,7 @@ body.dark-mode .site-header {
 }
 
 .hero-grid,
+.page-hero-grid,
 .two-column,
 .grid-3,
 .grid-5,
@@ -186,14 +187,61 @@ body.dark-mode .site-header {
 .resource-grid,
 .pathway-grid,
 .testimonial-grid,
-.footer-grid {
+.footer-grid,
+.join-layout {
   display: grid;
   gap: 1.5rem;
 }
 
-.hero-grid {
+.hero-grid,
+.page-hero-grid {
   grid-template-columns: 1.35fr 0.9fr;
   align-items: center;
+}
+
+.join-layout {
+grid-template-columns: 90% 10%;
+  gap: 3rem;
+  align-items: start;
+}
+
+.page-hero-grid {
+  gap: 2rem;
+}
+
+.floating-orb {
+  position: relative;
+  min-height: 360px;
+  border-radius: 28px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at top left, rgba(91, 75, 255, 0.28), transparent 40%),
+    radial-gradient(circle at bottom right, rgba(56, 189, 248, 0.25), transparent 45%),
+    linear-gradient(135deg, rgba(91, 75, 255, 0.18), rgba(255, 255, 255, 0.6));
+  border: 1px solid rgba(91, 75, 255, 0.12);
+  box-shadow: var(--shadow-soft);
+}
+
+.floating-orb::before,
+.floating-orb::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(8px);
+}
+
+.floating-orb::before {
+  inset: 18% auto auto 12%;
+  width: 150px;
+  height: 150px;
+  background: rgba(244, 114, 182, 0.3);
+}
+
+.floating-orb::after {
+  inset: auto 12% 16% auto;
+  width: 180px;
+  height: 180px;
+  background: rgba(56, 189, 248, 0.32);
 }
 
 .grid-3 {
@@ -396,12 +444,37 @@ body.dark-mode .faq-list p {
   margin-top: 1.8rem;
 }
 
+.scroll-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-top: 1.2rem;
+  font-weight: 700;
+  color: var(--secondary);
+}
+
+.scroll-indicator span {
+  display: inline-grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(91, 75, 255, 0.12);
+  animation: bounce 1.8s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(4px); }
+}
+
 .btn {
   text-decoration: none;
   border: none;
   padding: 0.92rem 1.35rem;
   border-radius: 999px;
   font-weight: 700;
+  font-family: inherit;
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
   position: relative;
@@ -431,6 +504,10 @@ body.dark-mode .faq-list p {
   background: linear-gradient(135deg, var(--primary), var(--secondary));
   color: var(--white);
   box-shadow: var(--shadow);
+  width: auto;
+  min-width: 140px;
+  border-radius: 999px;
+  padding: 0.98rem 1.5rem;
 }
 
 .btn-secondary {
@@ -672,27 +749,83 @@ body.dark-mode .value-box {
   font-weight: 700;
 }
 
-.newsletter-box {
+.newsletter-box,
+.join-form {
   padding: 1.5rem;
   display: grid;
-  grid-template-columns: 1fr auto;
   gap: 1rem;
+}
+
+.newsletter-box {
+  grid-template-columns: 1fr auto;
   align-items: center;
 }
 
-.newsletter-form {
-  display: flex;
-  gap: 0.8rem;
-  flex-wrap: wrap;
+.newsletter-form,
+.join-form {
+  display: grid;
+  gap: 0.9rem;
 }
 
-.newsletter-form input {
-  min-width: 260px;
+.join-form label {
+  width: 100%;
+}
+
+.newsletter-form input,
+.join-form input,
+.join-form textarea,
+.join-form select {
+  width: 100%;
+  min-width: 0;
   padding: 0.92rem 1rem;
-  border-radius: 999px;
+  border-radius: 18px;
   border: 1px solid var(--border);
-  background: transparent;
+  background: rgba(255, 255, 255, 0.9);
   color: var(--text);
+  font: inherit;
+  box-shadow: inset 0 1px 2px rgba(15, 23, 42, 0.04);
+}
+
+body.dark-mode .newsletter-form input,
+body.dark-mode .join-form input,
+body.dark-mode .join-form textarea,
+body.dark-mode .join-form select {
+  background: rgba(15, 23, 42, 0.82);
+  color: var(--text);
+}
+
+.join-form textarea {
+  width: 100%;
+  min-width: 100%;
+  border-radius: 20px;
+  min-height: 220px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.join-form .form-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
+  width: 100%;
+}
+
+.join-form .form-message,
+.join-success {
+  width: 100%;
+}
+
+.join-success {
+  display: none;
+  padding: 0.8rem 1rem;
+  border-radius: 16px;
+  background: rgba(56, 189, 248, 0.12);
+  color: var(--text);
+  font-weight: 700;
+}
+
+.join-success.visible {
+  display: block;
 }
 
 .form-message {
@@ -788,6 +921,7 @@ body.dark-mode .value-box {
 
 @media (max-width: 900px) {
   .hero-grid,
+  .page-hero-grid,
   .section-head,
   .impact-grid,
   .pathway-grid,
@@ -797,7 +931,8 @@ body.dark-mode .value-box {
   .testimonial-grid,
   .footer-grid,
   .newsletter-box,
-  .page-hero-grid {
+  .join-layout,
+  .join-form .form-row {
     grid-template-columns: 1fr;
   }
 

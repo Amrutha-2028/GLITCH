@@ -36,6 +36,7 @@
               <p class="eyebrow">Join Us</p>
               <h1>There’s a place for you at GLITCH.</h1>
               <p class="hero-copy">Whether you are a student, volunteer, or organization, you can help inspire the next generation of women in technology.</p>
+              <div class="scroll-indicator"><span>↓</span> Scroll to get involved</div>
             </div>
             <div class="floating-orb"></div>
           </div>
@@ -43,9 +44,72 @@
 
         <section class="section reveal">
           <div class="container join-box">
+            <p class="section-label">Why Join</p>
             <h2>Learn. Build. Lead.</h2>
             <p>Students can learn, volunteers can give back, and organizations can partner with us to create more opportunities for girls in STEM.</p>
-            <a class="btn btn-primary" href="mailto:hello@glitch.org">Get Involved</a>
+            <div class="grid-3">
+              <article class="card">
+                <h3>For students</h3>
+                <p>Access welcoming programs, creative mentorship, and pathways into coding, AI, robotics, and engineering.</p>
+              </article>
+              <article class="card">
+                <h3>For volunteers</h3>
+                <p>Share your expertise, support confidence-building sessions, and help more girls see themselves in STEM.</p>
+              </article>
+              <article class="card">
+                <h3>For partners</h3>
+                <p>Collaborate with GLITCH to create inclusive opportunities, visibility, and long-term impact.</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="section reveal">
+          <div class="container join-layout">
+            <form id="join-form" class="join-form card">
+              <div class="section-head">
+                <div>
+                  <p class="section-label">Get Started</p>
+                  <h2>Tell us how you want to help.</h2>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <label>
+                  <span class="sr-only">Name</span>
+                  <input id="name" type="text" placeholder="Your name" required />
+                </label>
+                <label>
+                  <span class="sr-only">Email</span>
+                  <input id="email" type="email" placeholder="Email address" required />
+                </label>
+              </div>
+
+              <div class="form-row">
+                <label>
+                  <span class="sr-only">Interest</span>
+                  <select id="role" required>
+                    <option value="">I want to join as...</option>
+                    <option>Student</option>
+                    <option>Volunteer</option>
+                    <option>Partner</option>
+                  </select>
+                </label>
+                <label>
+                  <span class="sr-only">Area of interest</span>
+                  <input type="text" placeholder="Area of interest" />
+                </label>
+              </div>
+
+              <label>
+                <span class="sr-only">Message</span>
+                <textarea placeholder="Tell us a little about your goals or skills."></textarea>
+              </label>
+
+              <button type="submit" class="btn btn-primary">Submit</button>
+              <p id="join-form-message" class="form-message" aria-live="polite"></p>
+              <div id="join-success" class="join-success" aria-live="polite"></div>
+            </form>
           </div>
         </section>
       </main>

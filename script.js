@@ -31,15 +31,23 @@ const updateScrollUI = () => {
   const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
   const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
 
-  scrollProgress.style.width = `${progress}%`;
-  header.classList.toggle('shrink', scrollTop > 50);
-  backToTop.classList.toggle('visible', scrollTop > 420);
+  if (scrollProgress) {
+    scrollProgress.style.width = `${progress}%`;
+  }
+
+  if (header) {
+    header.classList.toggle('shrink', scrollTop > 50);
+  }
+
+  if (backToTop) {
+    backToTop.classList.toggle('visible', scrollTop > 420);
+  }
 };
 
 window.addEventListener('scroll', updateScrollUI);
 updateScrollUI();
 
-backToTop.addEventListener('click', () => {
+backToTop?.addEventListener('click', () => {
   window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
 });
 
@@ -174,11 +182,44 @@ newsletterForm?.addEventListener('submit', (event) => {
   const email = emailField.value.trim();
 
   if (!email || !email.includes('@')) {
-    formMessage.textContent = 'Please enter a valid email address.';
-    emailField.focus();
+    if (formMessage) {
+      formMessage.textContent = 'Please enter a valid email address.';
+    }
+    emailField?.focus();
     return;
   }
 
-  formMessage.textContent = 'Thanks for joining the GLITCH newsletter!';
+  if (formMessage) {
+    formMessage.textContent = 'Thanks for joining the GLITCH newsletter!';
+  }
   newsletterForm.reset();
+});
+
+const joinForm = document.getElementById('join-form');
+const joinSuccess = document.getElementById('join-success');
+const joinFormMessage = document.getElementById('join-form-message');
+
+joinForm?.addEventListener('submit', (event) => {
+  event.preventDefault();
+  const name = joinForm.querySelector('#name')?.value.trim();
+  const email = joinForm.querySelector('#email')?.value.trim();
+  const role = joinForm.querySelector('#role')?.value.trim();
+
+  if (!name || !email || !role || !email.includes('@')) {
+    if (joinFormMessage) {
+      joinFormMessage.textContent = 'Please complete your name, email, and interest so we can help you get started.';
+    }
+    return;
+  }
+
+  if (joinSuccess) {
+    joinSuccess.classList.add('visible');
+    joinSuccess.textContent = `Thanks, ${name}! Your interest in joining GLITCH has been received.`;
+  }
+
+  if (joinFormMessage) {
+    joinFormMessage.textContent = '';
+  }
+
+  joinForm.reset();
 });
