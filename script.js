@@ -167,11 +167,184 @@ setInterval(() => {
   updateCarousel();
 }, 5000);
 
+const applyTheme = (isDark) => {
+  document.body.classList.toggle('dark-mode', isDark);
+  const themeButtons = document.querySelectorAll('#theme-toggle, #settings-theme-toggle');
+  themeButtons.forEach((button) => {
+    if (button.id === 'theme-toggle') {
+      button.textContent = isDark ? '☀️' : '🌙';
+    }
+    if (button.id === 'settings-theme-toggle') {
+      button.checked = isDark;
+    }
+  });
+
+  const settingsStatus = document.getElementById('settings-status');
+  if (settingsStatus) {
+    settingsStatus.textContent = isDark ? 'Theme is currently set to dark mode.' : 'Theme is currently set to light mode.';
+  }
+
+  localStorage.setItem('glitch-theme', isDark ? 'dark' : 'light');
+};
+
+const initialTheme = localStorage.getItem('glitch-theme') === 'dark';
+applyTheme(initialTheme);
+
 const themeToggle = document.getElementById('theme-toggle');
 themeToggle?.addEventListener('click', () => {
-  document.body.classList.toggle('dark-mode');
-  themeToggle.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+  const nextMode = !document.body.classList.contains('dark-mode');
+  applyTheme(nextMode);
 });
+
+const settingsThemeToggle = document.getElementById('settings-theme-toggle');
+settingsThemeToggle?.addEventListener('change', (event) => {
+  applyTheme(event.target.checked);
+});
+
+const settingsReset = document.getElementById('settings-reset');
+settingsReset?.addEventListener('click', () => applyTheme(false));
+
+const assistantLaunch = document.getElementById('assistant-launch');
+const assistantModal = document.getElementById('assistant-modal');
+const assistantClose = document.getElementById('assistant-close');
+const assistantForm = document.getElementById('assistant-form');
+const assistantInput = document.getElementById('assistant-input');
+const assistantMessages = document.getElementById('assistant-messages');
+
+const assistantReplies = {
+  join: 'You can join GLITCH by visiting the Join page and submitting your interest through the form there.',
+  program: 'GLITCH offers coding, AI, robotics, hardware, and leadership pathways. Visit the Programs page to browse them.',
+  mission: 'GLITCH aims to empower girls with access, mentorship, and confidence in technology and innovation.',
+  help: 'You can use the navigation links to explore About, Mission, Programs, Impact, and Join pages for more information.'
+};
+
+const addAssistantMessage = (text, type = 'bot') => {
+  const bubble = document.createElement('div');
+  bubble.className = `chat-bubble ${type}`;
+  bubble.textContent = text;
+  assistantMessages?.appendChild(bubble);
+  assistantMessages?.scrollTo({ top: assistantMessages.scrollHeight, behavior: 'smooth' });
+};
+
+const getAssistantSettings = () => {
+  const raw = localStorage.getItem('glitch-assistant-settings');
+  if (!raw) return null;
+
+  try {
+    return JSON.parse(raw);
+  } catch {
+    return null;
+  }
+};
+
+const fallbackAssistantAnswer = (question) => {
+  let answer = assistantReplies.help;
+  if (question.includes('join')) answer = assistantReplies.join;
+  if (question.includes('program') || question.includes('opportunity') || question.includes('pathway')) answer = assistantReplies.program;
+  if (question.includes('mission') || question.includes('goal') || question.includes('why')) answer = assistantReplies.mission;
+  return answer;
+};
+
+const saveApiSettings = async () => {
+  const apiKey = document.getElementById('chat-api-key')?.value.trim();
+  const model = document.getElementById('chat-model')?.value.trim();
+  const endpoint = document.getElementById('chat-endpoint')?.value.trim();
+  const status = document.getElementById('api-settings-message');
+
+  if (!apiKey || !model || !endpoint) {
+    status.textContent = 'Please complete all AI settings fields before saving.';
+    return;
+  }
+
+  localStorage.setItem(
+    'glitch-assistant-settings',
+    JSON.stringify({ apiKey, model, endpoint })
+  );
+
+  status.textContent = 'AI settings saved. The assistant will use your configured API model.';
+};
+
+const askAssistant = async (question) => {
+  const settings = getAssistantSettings();
+
+  if (!settings?.apiKey || !settings?.model || !settings?.endpoint) {
+    return fallbackAssistantAnswer(question);
+  }
+
+  try {
+    const response = await fetch(settings.endpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${settings.apiKey}`
+      },
+      body: JSON.stringify({
+        model: settings.model,
+        messages: [
+          {
+            role: 'system',
+            content: 'You are a friendly assistant for the GLITCH website. Answer concisely and help visitors understand the site, programs, and how to join.'
+          },
+          {
+            role: 'user',
+            content: question
+          }
+        ],
+        temperature: 0.7
+      })
+    });
+
+    if (!response.ok) {
+      throw new Error('API request failed');
+    }
+
+    const data = await response.json();
+    return data?.choices?.[0]?.message?.content?.trim() || fallbackAssistantAnswer(question);
+  } catch {
+    return fallbackAssistantAnswer(question);
+  }
+};
+
+assistantLaunch?.addEventListener('click', () => {
+  assistantModal?.classList.toggle('open');
+  assistantInput?.focus();
+});
+
+assistantClose?.addEventListener('click', () => {
+  assistantModal?.classList.remove('open');
+});
+
+assistantForm?.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  const question = assistantInput.value.trim();
+  if (!question) return;
+
+  addAssistantMessage(question, 'user');
+  assistantInput.value = '';
+
+  const statusBubble = document.createElement('div');
+  statusBubble.className = 'chat-bubble bot';
+  statusBubble.textContent = 'Thinking...';
+  assistantMessages?.appendChild(statusBubble);
+
+  const answer = await askAssistant(question.toLowerCase());
+  assistantMessages?.removeChild(statusBubble);
+  addAssistantMessage(answer);
+});
+
+const saveApiButton = document.getElementById('save-api-settings');
+saveApiButton?.addEventListener('click', saveApiSettings);
+
+const storedSettings = getAssistantSettings();
+if (storedSettings) {
+  const keyField = document.getElementById('chat-api-key');
+  const modelField = document.getElementById('chat-model');
+  const endpointField = document.getElementById('chat-endpoint');
+
+  keyField.value = storedSettings.apiKey || '';
+  modelField.value = storedSettings.model || '';
+  endpointField.value = storedSettings.endpoint || '';
+}
 
 const newsletterForm = document.getElementById('newsletter-form');
 const formMessage = document.getElementById('form-message');

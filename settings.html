@@ -3,32 +3,35 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>About GLITCH</title>
+    <title>GLITCH Settings</title>
+    <meta name="description" content="Adjust your GLITCH site preferences, including dark mode." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Ccircle cx='60' cy='60' r='52' fill='%235b4bff'/%3E%3C/svg%3E" />
+    <link rel="icon" type="image/png" href="logo.png" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <div class="page-shell">
       <header class="site-header">
         <div class="container header-inner">
-          <a class="brand" href="index.html">
+          <a class="brand" href="index.html" aria-label="GLITCH home page">
             <img class="brand-logo" src="logo.png" alt="GLITCH logo" />
             <span class="brand-text">
               <span class="brand-mark">GLITCH</span>
               <span class="brand-sub">Girls Leading in Technology, Computing and Hardware</span>
             </span>
           </a>
-          <nav class="site-nav">
+
+          <nav class="site-nav" aria-label="Primary navigation">
             <a href="index.html">Home</a>
-            <a href="about.html" class="active">About</a>
+            <a href="about.html">About</a>
             <a href="mission.html">Mission</a>
             <a href="programs.html">Programs</a>
             <a href="impact.html">Impact</a>
             <a href="join.html">Join</a>
           </nav>
+
           <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">🌙</button>
         </div>
       </header>
@@ -39,36 +42,60 @@
         <section class="page-hero reveal">
           <div class="container page-hero-grid">
             <div>
-              <p class="eyebrow">About Us</p>
-              <h1>Built to open doors into STEM.</h1>
-              <p class="hero-copy">GLITCH is a youth-led global initiative created to help girls explore, learn, and lead in technology, engineering, and innovation.</p>
+              <p class="eyebrow">Settings</p>
+              <h1>Customize your GLITCH experience.</h1>
+              <p class="hero-copy">Use the preferences below to personalize how the site looks and feels while you explore.</p>
             </div>
             <div class="floating-orb"></div>
           </div>
         </section>
 
         <section class="section reveal">
-          <div class="container two-column">
-            <div>
-              <p class="section-label">Who We Are</p>
-              <h2>A growing community with a global mission.</h2>
-            </div>
-            <div>
-              <p>Founded in 2026, GLITCH began with one simple belief: every girl deserves the opportunity to explore, create, and lead in technology. We believe talent is everywhere, but opportunities are not.</p>
-              <p>Our work centers on reducing barriers, opening access, and helping girls uncover what they are capable of through mentorship, workshops, projects, and peer support.</p>
-            </div>
-          </div>
-        </section>
+          <div class="container">
+            <div class="settings-card glass-card">
+              <div class="settings-row">
+                <div>
+                  <p class="section-label">Display</p>
+                  <h2>Dark mode</h2>
+                  <p class="muted-copy">Switch the site to a darker visual theme for low-light browsing.</p>
+                </div>
+                <label class="settings-toggle">
+                  <input id="settings-theme-toggle" type="checkbox" />
+                  <span>Enable dark mode</span>
+                </label>
+              </div>
 
-        <section class="section alt-section reveal">
-          <div class="container two-column">
-            <div>
-              <p class="section-label">Our Story</p>
-              <h2>From a vision to a shared movement.</h2>
-            </div>
-            <div>
-              <p>GLITCH was founded in 2026 by Nnodiogu Jessica. What started as one person’s vision has grown into a shared mission supported by passionate volunteers, students, and leaders who want to make technology more accessible and inclusive.</p>
-              <p>Together, we are building a space where girls can learn, collaborate, innovate, and shape the future through technology.</p>
+              <div class="settings-row compact-row">
+                <div>
+                  <p class="section-label">Saved preference</p>
+                  <p id="settings-status" class="muted-copy">Theme is currently set to light mode.</p>
+                </div>
+                <button id="settings-reset" class="btn btn-secondary">Reset to light</button>
+              </div>
+
+              <div class="settings-row compact-row settings-api-row">
+                <div>
+                  <p class="section-label">AI Assistant</p>
+                  <h2>API-powered chatbot</h2>
+                  <p class="muted-copy">Save an OpenAI-compatible API key to let the corner assistant answer real questions.</p>
+                </div>
+                <div class="settings-api-form">
+                  <label>
+                    <span class="sr-only">OpenAI-compatible API key</span>
+                    <input id="chat-api-key" type="password" placeholder="Enter API key" />
+                  </label>
+                  <label>
+                    <span class="sr-only">Model name</span>
+                    <input id="chat-model" type="text" placeholder="Model name (example: gpt-4o-mini)" />
+                  </label>
+                  <label>
+                    <span class="sr-only">API endpoint</span>
+                    <input id="chat-endpoint" type="url" placeholder="https://api.openai.com/v1/chat/completions" />
+                  </label>
+                  <button id="save-api-settings" class="btn btn-primary">Save API settings</button>
+                  <p id="api-settings-message" class="form-message" aria-live="polite"></p>
+                </div>
+              </div>
             </div>
           </div>
         </section>
