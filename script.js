@@ -396,3 +396,33 @@ joinForm?.addEventListener('submit', (event) => {
 
   joinForm.reset();
 });
+
+const contactForm = document.getElementById('contact-form');
+const contactSuccess = document.getElementById('contact-success');
+const contactFormMessage = document.getElementById('contact-form-message');
+
+contactForm?.addEventListener('submit', (event) => {
+  event.preventDefault();
+  const name = contactForm.querySelector('#contact-name')?.value.trim();
+  const email = contactForm.querySelector('#contact-email')?.value.trim();
+  const subject = contactForm.querySelector('#contact-subject')?.value.trim();
+  const message = contactForm.querySelector('#contact-message')?.value.trim();
+
+  if (!name || !email || !subject || !message || !email.includes('@')) {
+    if (contactFormMessage) {
+      contactFormMessage.textContent = 'Please complete your name, email, subject, and message so we can respond properly.';
+    }
+    return;
+  }
+
+  if (contactSuccess) {
+    contactSuccess.classList.add('visible');
+    contactSuccess.textContent = `Thanks, ${name}! Your message has been sent to GLITCH.`;
+  }
+
+  if (contactFormMessage) {
+    contactFormMessage.textContent = '';
+  }
+
+  contactForm.reset();
+});

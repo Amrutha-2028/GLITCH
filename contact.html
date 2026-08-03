@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GLITCH Settings</title>
-    <meta name="description" content="Adjust your GLITCH site preferences, including dark mode." />
+    <title>Contact GLITCH</title>
+    <meta name="description" content="Contact GLITCH with questions, partnerships, or support." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -30,7 +30,7 @@
             <a href="programs.html">Programs</a>
             <a href="impact.html">Impact</a>
             <a href="join.html">Join</a>
-            <a href="contact.html">Contact</a>
+            <a href="contact.html" class="active">Contact</a>
           </nav>
 
           <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">🌙</button>
@@ -43,61 +43,55 @@
         <section class="page-hero reveal">
           <div class="container page-hero-grid">
             <div>
-              <p class="eyebrow">Settings</p>
-              <h1>Customize your GLITCH experience.</h1>
-              <p class="hero-copy">Use the preferences below to personalize how the site looks and feels while you explore.</p>
+              <p class="eyebrow">Contact Us</p>
+              <h1>Let’s connect.</h1>
+              <p class="hero-copy">Whether you’re asking a question, exploring a partnership, or just want to learn more, GLITCH would love to hear from you.</p>
             </div>
             <div class="floating-orb"></div>
           </div>
         </section>
 
         <section class="section reveal">
-          <div class="container">
-            <div class="settings-card glass-card">
-              <div class="settings-row">
+          <div class="container join-layout">
+            <form id="contact-form" class="join-form card">
+              <div class="section-head">
                 <div>
-                  <p class="section-label">Display</p>
-                  <h2>Dark mode</h2>
-                  <p class="muted-copy">Switch the site to a darker visual theme for low-light browsing.</p>
+                  <p class="section-label">Reach Out</p>
+                  <h2>Send us a message.</h2>
                 </div>
-                <label class="settings-toggle">
-                  <input id="settings-theme-toggle" type="checkbox" />
-                  <span>Enable dark mode</span>
+              </div>
+
+              <div class="form-row">
+                <label>
+                  <span class="sr-only">Name</span>
+                  <input id="contact-name" type="text" placeholder="Your name" required />
+                </label>
+                <label>
+                  <span class="sr-only">Email</span>
+                  <input id="contact-email" type="email" placeholder="Email address" required />
                 </label>
               </div>
 
-              <div class="settings-row compact-row">
-                <div>
-                  <p class="section-label">Saved preference</p>
-                  <p id="settings-status" class="muted-copy">Theme is currently set to light mode.</p>
-                </div>
-                <button id="settings-reset" class="btn btn-secondary">Reset to light</button>
+              <div class="form-row">
+                <label>
+                  <span class="sr-only">Subject</span>
+                  <input id="contact-subject" type="text" placeholder="Subject" required />
+                </label>
+                <label>
+                  <span class="sr-only">Phone</span>
+                  <input id="contact-phone" type="tel" placeholder="Phone number" />
+                </label>
               </div>
 
-              <div class="settings-row compact-row settings-api-row">
-                <div>
-                  <p class="section-label">AI Assistant</p>
-                  <h2>API-powered chatbot</h2>
-                  <p class="muted-copy">Save an OpenAI-compatible API key to let the corner assistant answer real questions.</p>
-                </div>
-                <div class="settings-api-form">
-                  <label>
-                    <span class="sr-only">OpenAI-compatible API key</span>
-                    <input id="chat-api-key" type="password" placeholder="Enter API key" />
-                  </label>
-                  <label>
-                    <span class="sr-only">Model name</span>
-                    <input id="chat-model" type="text" placeholder="Model name (example: gpt-4o-mini)" />
-                  </label>
-                  <label>
-                    <span class="sr-only">API endpoint</span>
-                    <input id="chat-endpoint" type="url" placeholder="https://api.openai.com/v1/chat/completions" />
-                  </label>
-                  <button id="save-api-settings" class="btn btn-primary">Save API settings</button>
-                  <p id="api-settings-message" class="form-message" aria-live="polite"></p>
-                </div>
-              </div>
-            </div>
+              <label>
+                <span class="sr-only">Message</span>
+                <textarea id="contact-message" placeholder="How can we help?" required></textarea>
+              </label>
+
+              <button type="submit" class="btn btn-primary">Submit</button>
+              <p id="contact-form-message" class="form-message" aria-live="polite"></p>
+              <div id="contact-success" class="join-success" aria-live="polite"></div>
+            </form>
           </div>
         </section>
       </main>
