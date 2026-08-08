@@ -1177,3 +1177,58 @@ body.dark-mode .join-form select {
     scroll-behavior: auto !important;
   }
 }
+
+.leads {
+    display: flex;
+    gap: 30px;
+    overflow-x: auto;
+    padding: 30px;
+    scroll-behavior: smooth;
+    background: #efeded;
+    justify-content: center;
+
+    /* Makes the scrollbar less distracting */
+    scrollbar-width: thin;
+}
+
+.leader {
+    flex: 0 0 220px;
+    background: white;
+    padding: 20px;
+    border-radius: 18px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.leader:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+.leader h2 {
+    font-size: 26px;
+    margin: 5px 0 4px;
+}
+
+.leader h3 {
+    font-size: 15px;
+    font-weight: 500;
+    color: #666;
+    margin: 0 0 18px;
+}
+
+/* THIS is the important part */
+.leader img {
+    width: 170px;
+    height: 170px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
+    display: block;
+    margin: 0 auto;
+}
+
+.center-heading {
+  text-align: center;
+}
