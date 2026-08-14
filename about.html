@@ -1,158 +1,158 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>About GLITCH</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Ccircle cx='60' cy='60' r='52' fill='%235b4bff'/%3E%3C/svg%3E" />
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <div class="page-shell">
-      <header class="site-header">
-        <div class="container header-inner">
-          <a class="brand" href="index.html">
-            <img class="brand-logo" src="logo.png" alt="GLITCH logo" />
-            <span class="brand-text">
-              <span class="brand-mark">GLITCH</span>
-              <span class="brand-sub">Girls Leading in Technology, Computing and Hardware</span>
-            </span>
-          </a>
-          <nav class="site-nav">
-            <a href="index.html">Home</a>
-            <a href="about.html" class="active">About</a>
-            <a href="mission.html">Mission</a>
-            <a href="programs.html">Programs</a>
-            <a href="impact.html">Impact</a>
-            <a href="join.html">Join</a>
-            <a href="contact.html">Contact</a>
-          </nav>
-          <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">🌙</button>
-        </div>
-      </header>
 
-      <a href="settings.html" class="settings-launch" aria-label="Open settings">⚙️</a>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About GLITCH</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Ccircle cx='60' cy='60' r='52' fill='%235b4bff'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
 
-      <main>
-        <section class="page-hero reveal">
-          <div class="container page-hero-grid">
-            <div>
-              <p class="eyebrow">About Us</p>
-              <h1>Built to open doors into STEM.</h1>
-              <p class="hero-copy">GLITCH is a youth-led global initiative created to help girls explore, learn, and lead in technology, engineering, and innovation.</p>
-            </div>
-            <div class="floating-orb"></div>
-          </div>
-        </section>
-
-        <section class="section reveal">
-          <div class="container two-column">
-            <div>
-              <p class="section-label">Who We Are</p>
-              <h2>A growing community with a global mission.</h2>
-            </div>
-            <div>
-              <p>Founded in 2026, GLITCH began with one simple belief: every girl deserves the opportunity to explore, create, and lead in technology. We believe talent is everywhere, but opportunities are not.</p>
-              <p>Our work centers on reducing barriers, opening access, and helping girls uncover what they are capable of through mentorship, workshops, projects, and peer support.</p>
-            </div>
-          </div>
-        </section>
-        <h1 class="center-heading">Meet our Team</h1>
-        <section class = "leads">
-          <div class = "leader">
-            <h2>Asha</h2>
-            <h3>Lead of Outreach</h3>
-            <img src = "asha.webp" alt = "Asha">
-          </div>
-          <div class = "leader">
-            <h2>Smritee</h2>
-            <h3>Program and Learning Lead</h3>
-            <img src = "smritee.webp" alt = "Smritee">
-          </div>
-          <div class = "leader">
-            <h2>Lela</h2>
-            <h3>Program and Learning Lead</h3>
-            <img src = "lela.webp" alt = "Lela">
-          </div>
-          <div class = "leader">
-            <h2>Amrutha</h2>
-            <h3>Tech Lead</h3>
-            <img src = "amrutha.webp" alt = "Amrutha">
-          </div>
-        </section>
-        <section class="section alt-section reveal">
-          <div class="container two-column">
-            <div>
-              <p class="section-label">Our Story</p>
-              <h2>From a vision to a shared movement.</h2>
-            </div>
-            <div>
-              <p>GLITCH was founded in 2026 by Nnodiogu Jessica. What started as one person’s vision has grown into a shared mission supported by passionate volunteers, students, and leaders who want to make technology more accessible and inclusive.</p>
-              <p>Together, we are building a space where girls can learn, collaborate, innovate, and shape the future through technology.</p>
-            </div>
-          </div>
-        </section>
-      </main>
-
-      <div class="assistant-widget" aria-live="polite">
-        <div id="assistant-modal" class="assistant-modal" role="dialog" aria-modal="true" aria-label="AI assistant">
-          <div class="assistant-header">
-            <div>
-              <strong>GLITCH AI Assistant</strong>
-              <p>Ask for help, guidance, or quick answers.</p>
-            </div>
-            <button id="assistant-close" class="assistant-close" aria-label="Close AI assistant">×</button>
-          </div>
-          <div id="assistant-messages" class="assistant-messages">
-            <div class="chat-bubble bot">Hi! I can help with GLITCH programs, joining, or site guidance. Try: “How do I join?”</div>
-          </div>
-          <form id="assistant-form" class="assistant-form">
-            <input id="assistant-input" class="assistant-input" type="text" placeholder="Ask a question..." aria-label="Ask the assistant" />
-            <button type="submit" class="assistant-send">Send</button>
-          </form>
-        </div>
-        <button id="assistant-launch" class="assistant-launch" aria-label="Open AI assistant">AI</button>
-      </div>
-
-      <footer class="site-footer">
-      <div class="container footer-grid">
-        <div>
-          <h3>GLITCH</h3>
-          <p>Empowering girls to build the future through technology, engineering, and innovation.</p>
-        </div>
-        <div>
-          <h4>Quick Links</h4>
+<body>
+  <div class="page-shell">
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="index.html">
+          <img class="brand-logo" src="logo.png" alt="GLITCH logo" />
+          <span class="brand-text">
+            <span class="brand-mark">GLITCH</span>
+            <span class="brand-sub">Girls Leading in Technology, Computing and Hardware</span>
+          </span>
+        </a>
+        <nav class="site-nav">
           <a href="index.html">Home</a>
-          <a href="about.html">About</a>
+          <a href="about.html" class="active">About</a>
           <a href="mission.html">Mission</a>
           <a href="programs.html">Programs</a>
           <a href="impact.html">Impact</a>
           <a href="join.html">Join</a>
-        </div>
-        <div>
-          <h4>Contact</h4>
-          <a href="mailto:glitchinitiative26@gmail.com">glitchinitiative26@gmail.com</a>
-          <a href="tel:+2347064666068">+234 706 466 6068</a>
-        </div>
-        <div>
-          <h4>Social Media</h4>
-          <a href="https://www.linkedin.com/company/glitch-initiative/posts/?feedView=all">LinkedIn</a>
-          <a href="#">Instagram</a>
-          <a href="https://discord.gg/eTyT5NG63">Discord</a>
-        </div>
-        <div>
-          <h4>Newsletter</h4>
-          <p>Get upcoming opportunities and learning resources.</p>
-        </div>
+          <a href="contact.html">Contact</a>
+        </nav>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">🌙</button>
       </div>
-      <div class="container footer-bottom">
-        <span>© 2026 GLITCH. All rights reserved.</span>
+    </header>
+
+    <a href="settings.html" class="settings-launch" aria-label="Open settings">⚙️</a>
+
+    <main>
+      <section class="page-hero code-hero reveal">
+        <div class="container page-hero-grid">
+          <div>
+            <p class="eyebrow">About Us</p>
+
+            <div class="code-title" data-final="ABOUT US" aria-label="About Us">
+              <span class="code-title-text"></span>
+            </div>
+
+            <h1 class="hero-heading">
+              Empower girls with knowledge, confidence, and opportunity.
+            </h1>
+
+            <p class="hero-copy">
+              We want every girl to have the tools, support, and community needed
+              to thrive in technology, computing, engineering, and innovation.
+            </p>
+          </div>
+
+          <div class="floating-orb"></div>
+        </div>
+      </section>
+
+      <section class="section reveal">
+        <div class="container two-column">
+          <div>
+            <p class="section-label">Who We Are</p>
+            <h2>A growing community with a global mission.</h2>
+          </div>
+          <div>
+            <p>Founded in 2026, GLITCH began with one simple belief: every girl deserves the opportunity to explore,
+              create, and lead in technology. We believe talent is everywhere, but opportunities are not.</p>
+            <p>Our work centers on reducing barriers, opening access, and helping girls uncover what they are capable of
+              through mentorship, workshops, projects, and peer support.</p>
+          </div>
+        </div>
+      </section>
+      <h1 class="center-heading">Meet our Team</h1>
+      <section class="leads">
+        <div class="leader">
+          <h2>Asha</h2>
+          <h3>Lead of Outreach</h3>
+          <img src="asha.webp" alt="Asha">
+        </div>
+        <div class="leader">
+          <h2>Smritee</h2>
+          <h3>Program and Learning Lead</h3>
+          <img src="smritee.webp" alt="Smritee">
+        </div>
+        <div class="leader">
+          <h2>Lela</h2>
+          <h3>Program and Learning Lead</h3>
+          <img src="lela.webp" alt="Lela">
+        </div>
+        <div class="leader">
+          <h2>Amrutha</h2>
+          <h3>Tech Lead</h3>
+          <img src="amrutha.webp" alt="Amrutha">
+        </div>
+        <div class="leader">
+          <h2>Arush</h2>
+          <h3>Head of Marketing</h3>
+          <img src="arush.webp" alt="Arush">
+        </div>
+      </section>
+
+      <section class="section alt-section reveal">
+        <div class="container two-column">
+          <div>
+            <p class="section-label">Our Story</p>
+            <h2>From a vision to a shared movement.</h2>
+          </div>
+          <div>
+            <p>GLITCH was founded in 2026 by Nnodiogu Jessica. What started as one person’s vision has grown into a
+              shared mission supported by passionate volunteers, students, and leaders who want to make technology more
+              accessible and inclusive.</p>
+            <p>Together, we are building a space where girls can learn, collaborate, innovate, and shape the future
+              through technology.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div class="assistant-widget" aria-live="polite">
+      <div id="assistant-modal" class="assistant-modal" role="dialog" aria-modal="true" aria-label="AI assistant">
+        <div class="assistant-header">
+          <div>
+            <strong>GLITCH AI Assistant</strong>
+            <p>Ask for help, guidance, or quick answers.</p>
+          </div>
+          <button id="assistant-close" class="assistant-close" aria-label="Close AI assistant">×</button>
+        </div>
+        <div id="assistant-messages" class="assistant-messages">
+          <div class="chat-bubble bot">Hi! I can help with GLITCH programs, joining, or site guidance. Try: “How do I
+            join?”</div>
+        </div>
+        <form id="assistant-form" class="assistant-form">
+          <input id="assistant-input" class="assistant-input" type="text" placeholder="Ask a question..."
+            aria-label="Ask the assistant" />
+          <button type="submit" class="assistant-send">Send</button>
+        </form>
+      </div>
+      <button id="assistant-launch" class="assistant-launch" aria-label="Open AI assistant">AI</button>
+    </div>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <span>GLITCH</span>
+        <span>Girls Leading in Technology, Computing and Hardware</span>
       </div>
     </footer>
-    </div>
-    <script src="script.js"></script>
-  </body>
+  </div>
+  <script src="script.js"></script>
+</body>
+
 </html>

@@ -426,3 +426,196 @@ contactForm?.addEventListener('submit', (event) => {
 
   contactForm.reset();
 });
+
+/* =========================================================
+   GLITCH — FUZZY CURSOR AURA
+   ========================================================= */
+
+function setupFuzzyCursor() {
+  if (window.matchMedia("(pointer: coarse)").matches) {
+    return;
+  }
+
+  const aura = document.createElement("div");
+
+  aura.className = "fuzzy-cursor";
+
+  document.body.appendChild(aura);
+
+  let mouseX = window.innerWidth / 2;
+  let mouseY = window.innerHeight / 2;
+
+  let currentX = mouseX;
+  let currentY = mouseY;
+
+  document.addEventListener("mousemove", (event) => {
+    mouseX = event.clientX;
+    mouseY = event.clientY;
+  });
+
+  function animate() {
+    currentX += (mouseX - currentX) * 0.12;
+    currentY += (mouseY - currentY) * 0.12;
+
+    aura.style.left = `${currentX}px`;
+    aura.style.top = `${currentY}px`;
+
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+
+  const interactiveElements = document.querySelectorAll(
+    "a, button, input, textarea, select, .card, .pathway-card, .resource-card, .leader"
+  );
+
+  interactiveElements.forEach((element) => {
+    element.addEventListener("mouseenter", () => {
+      aura.classList.add("is-hovering");
+    });
+
+    element.addEventListener("mouseleave", () => {
+      aura.classList.remove("is-hovering");
+    });
+  });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  setupFuzzyCursor();
+});
+
+/* =========================================================
+   GLITCH — PAGE CODE MORPH
+   ========================================================= */
+
+function randomSymbol() {
+  const characters =
+    "01{}[]<>/\\|*$#@%+=-_~^!?ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+  return characters[
+    Math.floor(Math.random() * characters.length)
+  ];
+}
+
+function createGlitchString(length) {
+  let result = "";
+
+  for (let i = 0; i < length; i++) {
+    result += randomSymbol();
+  }
+
+  return result;
+}
+
+function morphPageTitle() {
+  const title = document.querySelector(".code-title");
+
+  if (!title) return;
+
+  const textElement = title.querySelector(".code-title-text");
+  const finalText = title.dataset.final;
+
+  if (!textElement || !finalText) return;
+
+  let frame = 0;
+
+  const totalFrames = 18;
+
+  textElement.classList.add("morphing");
+
+  const interval = setInterval(() => {
+    const progress = frame / totalFrames;
+
+    let output = "";
+
+    for (let i = 0; i < finalText.length; i++) {
+      if (progress > i / finalText.length) {
+        output += finalText[i];
+      } else {
+        output += randomSymbol();
+      }
+    }
+
+    textElement.textContent = output;
+
+    frame++;
+
+    if (frame > totalFrames) {
+      clearInterval(interval);
+
+      textElement.textContent = finalText;
+
+      textElement.classList.remove("morphing");
+      textElement.classList.add("resolved");
+
+      setTimeout(() => {
+        textElement.classList.remove("resolved");
+      }, 700);
+    }
+  }, 55);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  morphPageTitle();
+});
+
+/* =========================================================
+   GLITCH — ONE-TIME HERO SCROLL
+   ========================================================= */
+
+function setupGlitchIntro() {
+  const intro = document.querySelector(".glitch-intro");
+
+  if (!intro) return;
+
+  const words = [...intro.querySelectorAll(".glitch-word")];
+
+  if (!words.length) return;
+
+  let currentIndex = 0;
+
+  function updateIntro() {
+    const rect = intro.getBoundingClientRect();
+
+    const totalScroll =
+      intro.offsetHeight - window.innerHeight;
+
+    const progress =
+      Math.max(
+        0,
+        Math.min(
+          1,
+          -rect.top / totalScroll
+        )
+      );
+
+    const index = Math.min(
+      words.length - 1,
+      Math.floor(progress * words.length)
+    );
+
+    if (index !== currentIndex) {
+      currentIndex = index;
+
+      words.forEach((word, i) => {
+        word.classList.toggle(
+          "active",
+          i === currentIndex
+        );
+      });
+    }
+  }
+
+  window.addEventListener(
+    "scroll",
+    updateIntro,
+    { passive: true }
+  );
+
+  updateIntro();
+}
+
+document.addEventListener(
+  "DOMContentLoaded",
+  setupGlitchIntro
+);
